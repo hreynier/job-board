@@ -1,0 +1,24 @@
+{
+  "name": "entry-job-board",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hreynier/job-board.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hreynier/job-board/issues"
+  },
+  "homepage": "https://github.com/hreynier/job-board#readme",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "node-fetch": "^2.6.1"
+  }
+}
