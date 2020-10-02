@@ -21,8 +21,6 @@ async function fetchJobs(updateCb) {
   // Update state function used as callback
   // so that jobsList can be updated.
   updateCb(json);
-
-  console.log({json});
 }
 
 function App() {
