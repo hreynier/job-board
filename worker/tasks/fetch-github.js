@@ -51,6 +51,10 @@ async function fetchGithub() {
 
     console.log(`got ${allJobs.length} jobs in total.`);
 
+    let testJob = allJobs[2];
+
+    console.log({testJob});
+
     // Simple filtering algorithm
     const jrJobs = allJobs.filter(job => {
         const jobTitle = job.title.toLowerCase();
@@ -59,7 +63,7 @@ async function fetchGithub() {
             jobTitle.includes('senior') || 
             jobTitle.includes('sr.') || 
             jobTitle.includes('manager') ||
-            jobTitle.includes('architect')
+            jobTitle.includes('architect') //add more  incl. job descriptions.
         ) {
             return false
         }
