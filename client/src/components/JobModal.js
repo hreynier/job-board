@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import Chip from '@material-ui/core/Chip';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -18,6 +19,7 @@ export default function JobModal({job, open, handleClose}) {
     if(!job.title) {
         return <div></div>
     }
+    let jobBoard = `From ${job.source}`;
 
     return (
         // make job company smaller in the dialog title.
@@ -32,7 +34,8 @@ export default function JobModal({job, open, handleClose}) {
                 >
                 <DialogTitle id="alert-dialog-slide-title">
                     {job.title} <br />
-                    {job.company} 
+                    {job.company} <br />
+                    <Chip label={jobBoard} color="primary" />
                     <img className="detail-logo" src={job.company_logo} />
                 </DialogTitle>
                 <DialogContent>
