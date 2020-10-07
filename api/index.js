@@ -13,11 +13,31 @@ const getAsync = promisify(client.get).bind(client);
 app.get('/jobs', async (req, res) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    const jobs = await getAsync('github');
-    //console.log(JSON.parse(jobs).length);
 
+    // Fetch the Github JSON string, parse to Json and print the length to console.
+    const Github = await getAsync('github');
+    const JSON_Github = JSON.parse(Github);
+    console.log(`Github Jobs : ${JSON.parse(Github).length}`);
 
-    return res.send(jobs)
+    // Fetch the RemoteOK JSON string, parse to Json and print the length to console.
+    const RemoteOK = await getAsync('remoteok');
+    let JSON_RemoteOK = JSON.parse(RemoteOK);
+    console.log(`RemoteOk Jobs : ${JSON.parse(RemoteOK).length}`);
+
+    // Concatenate the JSON arrays into one total jobs array.
+    let jobs = JSON_Github.concat(JSON_RemoteOK);
+
+    // Print the total length.
+    console.log(`Total Jobs : ${jobs.length}`);
+
+    let sortedJobs = jobs.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    // Stringify Jobs.
+    jobs = JSON.stringify(jobs);
+    sortedJobs = JSON.stringify(sortedJobs);
+
+    
+    return res.send(sortedJobs) 
 })
 
 app.listen(port, () => {

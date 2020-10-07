@@ -62,22 +62,22 @@ async function fetchRemoteOk() {
     // Also reformatting the date as well.
 
     allJobs.forEach( entry => {
-        renameKey( entry, 'date', 'created_at');
         renameKey( entry , 'position', 'title');
 
         // Replace ID with UUID
         entry.id = uuidv4();
 
-        // Set new date variable and reformat as UTC string.
-        let jobDate = new Date(entry.created_at);
-        entry.created_at = jobDate.toUTCString().replace(/,/g, '');
+        entry.created_at = entry.date;
 
+        // Set new date variable and reformat as UTC string to allow to print in react client.
+        let jobDate = new Date(entry.created_at);
+        entry.created_at = jobDate.toString().replace(/,/g, '');
         entry.source = 'Remote OK';
     });
 
     
-    //let test2 = allJobs[2];
-    //console.log({test2});
+    let test2 = allJobs[2];
+    console.log({test2});
     
 
     // Simple filtering algo
@@ -97,7 +97,8 @@ async function fetchRemoteOk() {
             jobTitle.includes('president') ||
             jobTitle.includes('exec.') ||
             jobTitle.includes('executive') ||
-            jobTitle.includes('vice president') ||
+            jobTitle.includes('vice') ||
+            jobTitle.includes('principal') ||
             jobTitle.includes('Architekt') ||
             jobTitle.includes('architect') // Add more incl. descriptions.
         ) {

@@ -52,13 +52,20 @@ async function fetchGithub() {
     console.log(`GitHub: Got ${allJobs.length} jobs in total.`);
 
     // Add source key to each job.
+    // Add date object for sorting.
     allJobs.forEach( entry => {
         entry.source = 'GitHub Jobs';
+
+        let date = entry.created_at.split(' ').splice(0, 3).join(' ');
+        let year = entry.created_at.split(' ').splice(5).join(' ');
+        let dateFull = date.concat(' ', year);
+
+        entry.date = new Date(dateFull).toISOString();
     })
 
     let testJob = allJobs[2];
 
-    //console.log({testJob});
+    console.log({testJob});
 
     // Simple filtering algorithm
     const jrJobs = allJobs.filter(job => {
@@ -75,7 +82,8 @@ async function fetchGithub() {
             jobTitle.includes('president') ||
             jobTitle.includes('exec.') ||
             jobTitle.includes('executive') ||
-            jobTitle.includes('vice president') ||
+            jobTitle.includes('vice') ||
+            jobTitle.includes('principal') ||
             jobTitle.includes('Architekt') ||
             jobTitle.includes('architect') //add more  incl. job descriptions.
         ) {
