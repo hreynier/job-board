@@ -20,7 +20,7 @@ const baseURL = 'https://jobs.github.com/positions.json'
 
 
 async function fetchGithub() {
-    console.log('fetching github jobs.');
+    console.log('Fetching Github jobs...');
     /*  As base url only gives first page, we need to loop
         each page until we reach an empty page in order to
         fetch all of the possible jobs.
@@ -43,33 +43,47 @@ async function fetchGithub() {
 
         // Set result count.
         resultCount = jobs.length;
-        console.log('got', resultCount, 'jobs.');
+        console.log('Page: ', onPage,' got', resultCount, ' jobs.');
 
         // Increase onPage on each iteration.
         onPage++;
     }
 
-    console.log(`got ${allJobs.length} jobs in total.`);
+    console.log(`GitHub: Got ${allJobs.length} jobs in total.`);
+
+    // Add source key to each job.
+    allJobs.forEach( entry => {
+        entry.source = 'GitHub Jobs';
+    })
 
     let testJob = allJobs[2];
 
-    console.log({testJob});
+    //console.log({testJob});
 
     // Simple filtering algorithm
     const jrJobs = allJobs.filter(job => {
         const jobTitle = job.title.toLowerCase();
         // algorithm logic
         if(
-            jobTitle.includes('senior') || 
+            jobTitle.includes('senior') ||
             jobTitle.includes('sr.') || 
             jobTitle.includes('manager') ||
+            jobTitle.includes('lead') ||
+            jobTitle.includes('head') ||
+            jobTitle.includes('director') ||
+            jobTitle.includes('vp') ||
+            jobTitle.includes('president') ||
+            jobTitle.includes('exec.') ||
+            jobTitle.includes('executive') ||
+            jobTitle.includes('vice president') ||
+            jobTitle.includes('Architekt') ||
             jobTitle.includes('architect') //add more  incl. job descriptions.
         ) {
             return false
         }
         return true
     })
-    console.log(`filtered down to ${jrJobs.length} jr jobs in total.`);
+    console.log(`GitHub: Filtered down to ${jrJobs.length} jr jobs in total.`);
 
     // Send jobs to redis server.
     const success = await setAsync('github', JSON.stringify(jrJobs));
@@ -78,7 +92,7 @@ async function fetchGithub() {
 }
 
 // testing
-fetchGithub();
+//fetchGithub();
 
 // export for CronJobs.
 module.exports = fetchGithub;

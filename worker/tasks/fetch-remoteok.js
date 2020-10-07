@@ -7,6 +7,10 @@
 /* import fetch from node-fetch library */
 var fetch = require('node-fetch');
 
+/* import uuid library */
+const { v4: uuidv4 } = require('uuid');
+
+
 /* import node-redis */
 var redis = require ("redis");
 const client = redis.createClient();
@@ -27,7 +31,7 @@ function renameKey( obj, oldKey, newKey) {
 } 
 
 async function fetchRemoteOk() {
-    console.log('fetching remoteOK jobs.');
+    console.log('Fetching RemoteOK jobs...');
     /*  Remote OK API provides every active posting through the base URL.
         This means we do not need to lioop through pages like the github API.
     */
@@ -48,36 +52,37 @@ async function fetchRemoteOk() {
 
     jobCount = allJobs.length;
 
-    let testJob = allJobs[2];
-
-    console.log({testJob});
-
     // Log total jobs received from API.
-    console.log(`got ${jobCount} jobs in total.`);
+    console.log(`RemoteOk: Got ${jobCount} jobs in total.`);
 
 
     // Need to change keys of json array.
-    // Loop through all jobs array, renaming each key according to the github jobs API key.
+    // Loop through all jobs array, renaming each key according to the github jobs API key names.
     // Use the function defined @line24.
+    // Also reformatting the date as well.
 
     allJobs.forEach( entry => {
         renameKey( entry, 'date', 'created_at');
-        
+        renameKey( entry , 'position', 'title');
+
+        // Replace ID with UUID
+        entry.id = uuidv4();
+
+        // Set new date variable and reformat as UTC string.
+        let jobDate = new Date(entry.created_at);
+        entry.created_at = jobDate.toUTCString().replace(/,/g, '');
+
+        entry.source = 'Remote OK';
     });
-    let test2 = allJobs[2];
-    console.log({test2});
 
     
+    //let test2 = allJobs[2];
+    //console.log({test2});
     
-
-
-    
-
-
 
     // Simple filtering algo
     const jrJobs = allJobs.filter(job => {
-        const jobTitle = job.position.toLowerCase();
+        const jobTitle = job.title.toLowerCase();
 
         // Algo Logic
 
@@ -87,6 +92,13 @@ async function fetchRemoteOk() {
             jobTitle.includes('manager') ||
             jobTitle.includes('lead') ||
             jobTitle.includes('head') ||
+            jobTitle.includes('director') ||
+            jobTitle.includes('vp') ||
+            jobTitle.includes('president') ||
+            jobTitle.includes('exec.') ||
+            jobTitle.includes('executive') ||
+            jobTitle.includes('vice president') ||
+            jobTitle.includes('Architekt') ||
             jobTitle.includes('architect') // Add more incl. descriptions.
         ) {
             return false
@@ -94,20 +106,16 @@ async function fetchRemoteOk() {
         return true
     })
 
-    console.log(`filtered down to ${jrJobs.length} jr jobs in total.`);
+    console.log(`Remote OK: Filtered down to ${jrJobs.length} jr jobs in total.`);
 
-
-
-   /* 
     // Send jobs to redis server.
     const success = await setAsync('remoteok', JSON.stringify(jrJobs));
 
     console.log({success});
-    */
 }
 
 // testing
-fetchRemoteOk();
+//fetchRemoteOk();
 
 // export for CronJobs.
 module.exports = fetchRemoteOk;
