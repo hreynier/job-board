@@ -1,7 +1,5 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -34,11 +32,21 @@ export default function Jobs({jobs}) {
     // step = 0, show 0-49;
     // step = 1, show 50-99; etc.
 
+    function scrollToTop () {
+        const c = document.documentElement.scrollTop || document.body.scrollTop;
+        if (c > 0) {
+          window.requestAnimationFrame(scrollToTop);
+          window.scrollTo(0, c - c / 8);
+        }
+    };
+
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        scrollToTop();
     };
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        scrollToTop();
     };
 
     return (
@@ -52,6 +60,11 @@ export default function Jobs({jobs}) {
             <Typography variant="h6" component="h2">
                 Found {numJobs} Jobs
             </Typography>
+
+            {/*<Typography variant="h6" component="h3">
+                Current Sources: <Button variant="outlined" color="primary" href="https://jobs.github.com/">GitHub Jobs</Button> <Button variant="outlined" color="primary" href="https://remoteok.io/">Remote OK</Button>
+                </Typography>
+            */}
 
 
             {jobsOnPage.map(
