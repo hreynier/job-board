@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import HeroSection from './components/HeroSection';
 
 import Jobs from './components/Jobs';
 
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <div className="App">
+      <HeroSection />
       <Jobs jobs={jobsList} />
       
     </div>
