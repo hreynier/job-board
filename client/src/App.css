@@ -28,3 +28,7 @@ body {
 .job-dialog {
   padding: 30px 50px
 }
+
+.app {
+  background-color: antiquewhite;
+}

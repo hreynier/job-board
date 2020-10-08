@@ -34,11 +34,13 @@ export default function JobModal({job, open, handleClose}) {
                 >
                 <DialogTitle id="alert-dialog-slide-title">
                     {job.title} <br />
-                    {job.company} <br />
-                    <Chip label={jobBoard} color="primary" />
+                    {job.company}
                     <img className="detail-logo" src={job.company_logo} />
+                    <br />
+                    <Chip size="small" label={jobBoard} color="primary" />
                 </DialogTitle>
                 <DialogContent>
+                    
                     <DialogContentText 
                         id="alert-dialog-slide-description" dangerouslySetInnerHTML={ {__html: job.description}}
                     />

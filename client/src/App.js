@@ -3,14 +3,7 @@ import './App.css';
 
 import Jobs from './components/Jobs';
 
-const mockJobs = [
-  {title: 'SWE 1', company: 'Google'},
-  {title: 'SWE 1', company: 'Microsoft'},
-  {title: 'SWE 1', company: 'Facebook'},
-  {title: 'SWE 1', company: 'Netflix'}
-]
-
-// Github jobs api express url
+// Jobs API URL - currently localhost.
 const JOB_API_URL = 'http://localhost:3001/jobs'
 
 // call API jobs.
