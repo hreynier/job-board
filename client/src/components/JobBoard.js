@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
+import './JobBoard.css';
 
 import Job from './Job';
 import JobModal from './JobModal';
@@ -32,8 +33,30 @@ export default function JobBoard({jobs}) {
     // step = 0, show 0-49;
     // step = 1, show 50-99; etc.
 
+    var getOffsetTop = function (elem) {
+
+        // Set our distance placeholder
+        var distance = 0;
+    
+        // Loop up the DOM
+        if (elem.offsetParent) {
+            do {
+                distance += elem.offsetTop;
+                elem = elem.offsetParent;
+            } while (elem);
+        }
+    
+        // Return our distance
+        return distance < 0 ? 0 : distance;
+    };
+
+    const jobBoardEl = document.getElementById('job-board');
+
     function scrollToTop () {
-        const c = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        const u = document.doctype.scrollTop || document.body.scrollTop;
+        const c = getOffsetTop(jobBoardEl);
+        console.log(c);
         if (c > 0) {
           window.requestAnimationFrame(scrollToTop);
           window.scrollTo(0, c - c / 8);
@@ -50,46 +73,50 @@ export default function JobBoard({jobs}) {
     };
 
     return (
-        <div className="jobs">
+        <div className="job-board-container" id="job-board">
             <JobModal open={open} job={selectedJob} handleClose = {handleClose} />
 
-            <Typography variant="h4" component="h1">
-                Entry Level Software Jobs
-            </Typography>
+            <div className="search-container">
+                <Typography variant="h4" component="h1">
+                    Entry Level Software Jobs
+                </Typography>
 
-            <Typography variant="h6" component="h2">
-                Found {numJobs} Jobs
-            </Typography>
-
-            {jobsOnPage.map(
-                (job, i) => (<Job key = {i} job={job} onClick={() => {
-                    handleClickOpen();
-                    setSelectedJob(job)
-                }} />)
-            )}
-
-            <div>
-                Page {activeStep + 1} of {numPages}
+                <Typography variant="h6" component="h2">
+                    Found {numJobs} Jobs
+                </Typography>
             </div>
 
-            <MobileStepper
-                variant="progress"
-                steps={numPages}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                    <Button size="small" onClick={handleNext} disabled={activeStep === (numPages - 1)} >
-                        Next
-                <KeyboardArrowRight />
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0} >
-                        <KeyboardArrowLeft />
-                Back
-            </Button>
-                }
-            />
+            <div className="jobs-container">
+                {jobsOnPage.map(
+                    (job, i) => (<Job key = {i} job={job} onClick={() => {
+                        handleClickOpen();
+                        setSelectedJob(job)
+                    }} />)
+                )}
+
+                <div>
+                    Page {activeStep + 1} of {numPages}
+                </div>
+
+                <MobileStepper
+                    variant="progress"
+                    steps={numPages}
+                    position="static"
+                    activeStep={activeStep}
+                    nextButton={
+                        <Button size="small" onClick={handleNext} disabled={activeStep === (numPages - 1)} >
+                            Next
+                    <KeyboardArrowRight />
+                        </Button>
+                    }
+                    backButton={
+                        <Button size="small" onClick={handleBack} disabled={activeStep === 0} >
+                            <KeyboardArrowLeft />
+                    Back
+                </Button>
+                    }
+                />
+            </div>
         </div>
     );
 }
