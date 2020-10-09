@@ -10,7 +10,7 @@ import Job from './Job';
 import JobModal from './JobModal';
 
 
-export default function Jobs({jobs}) {
+export default function JobBoard({jobs}) {
 
     // Modal
     const [open, setOpen] = React.useState(false);
@@ -60,12 +60,6 @@ export default function Jobs({jobs}) {
             <Typography variant="h6" component="h2">
                 Found {numJobs} Jobs
             </Typography>
-
-            {/*<Typography variant="h6" component="h3">
-                Current Sources: <Button variant="outlined" color="primary" href="https://jobs.github.com/">GitHub Jobs</Button> <Button variant="outlined" color="primary" href="https://remoteok.io/">Remote OK</Button>
-                </Typography>
-            */}
-
 
             {jobsOnPage.map(
                 (job, i) => (<Job key = {i} job={job} onClick={() => {

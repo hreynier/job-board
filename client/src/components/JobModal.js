@@ -9,6 +9,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Chip from '@material-ui/core/Chip';
 
+import './JobModal.css';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -35,7 +37,7 @@ export default function JobModal({job, open, handleClose}) {
                 <DialogTitle id="alert-dialog-slide-title">
                     {job.title} <br />
                     {job.company}
-                    <img className="detail-logo" src={job.company_logo} />
+                    <img className="detail-logo" src={job.company_logo} alt={`${job.company} Logo.`} />
                     <br />
                     <Chip size="small" label={jobBoard} color="primary" />
                 </DialogTitle>

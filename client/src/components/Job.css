@@ -1,0 +1,13 @@
+.job {
+    width: 80%;
+    display: flex;
+    margin: 20px 0;
+    padding: 20px 10px;
+    justify-content: space-between;
+}
+  
+.job:hover {
+    cursor: pointer;
+    color: #666666;  
+}
+  

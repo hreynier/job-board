@@ -1,34 +1,21 @@
+/* Resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  margin: 20px 40px;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.job {
-  width: 80%;
-  display: flex;
-  margin: 20px 0;
-  padding: 20px 10px;
-  justify-content: space-between;
-}
 
-.job:hover {
-  cursor: pointer;
-  color: #666666;  
-}
-
-.detail-logo {
-  height: 30px;
-  width: auto;
-  float: right;
-}
-
-.job-company {
-  padding: 0px 30px;
-}
-
-.job-dialog {
-  padding: 30px 50px
+code {
+  font-family: source-code-pro, monospace;
 }
 
 .app {
-  background-color: antiquewhite;
+  background-color: tomato;
 }

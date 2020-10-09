@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import HeroSection from './components/HeroSection';
 
-import Jobs from './components/Jobs';
+import JobBoard from './components/JobBoard';
 
 // Jobs API URL - currently localhost.
 const JOB_API_URL = 'http://localhost:3001/jobs'
@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <HeroSection />
-      <Jobs jobs={jobsList} />
+      <JobBoard jobs={jobsList} />
       
     </div>
   );
