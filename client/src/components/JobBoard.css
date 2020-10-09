@@ -1,6 +1,24 @@
 
 .job-board-container {
     width: 100%;
-    padding: 50px 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+}
+
+.jobs-container {
+    width: 100%;
+    padding: 50px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: tomato;
+}
+
+.search-container > .search-title {
+    margin-top: -25%;
 }

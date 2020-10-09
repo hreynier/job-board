@@ -40,28 +40,28 @@ export default function JobBoard({jobs}) {
     
         // Loop up the DOM
         if (elem.offsetParent) {
-            do {
+            while(elem) {
                 distance += elem.offsetTop;
                 elem = elem.offsetParent;
-            } while (elem);
+            }
         }
     
         // Return our distance
         return distance < 0 ? 0 : distance;
     };
 
+
     const jobBoardEl = document.getElementById('job-board');
 
     function scrollToTop () {
-        
-        const u = document.doctype.scrollTop || document.body.scrollTop;
         const c = getOffsetTop(jobBoardEl);
         console.log(c);
         if (c > 0) {
-          window.requestAnimationFrame(scrollToTop);
+          //window.requestAnimationFrame(scrollToTop); causes callback hell loop
           window.scrollTo(0, c - c / 8);
         }
     };
+
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -77,7 +77,7 @@ export default function JobBoard({jobs}) {
             <JobModal open={open} job={selectedJob} handleClose = {handleClose} />
 
             <div className="search-container">
-                <Typography variant="h4" component="h1">
+                <Typography className="search-title" variant="h4" component="h1">
                     Entry Level Software Jobs
                 </Typography>
 
