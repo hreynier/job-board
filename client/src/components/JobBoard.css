@@ -25,8 +25,8 @@
 }
 
 .search-container {
-    margin-top: -150px;
-    /*margin-bottom: -50px;*/
+    margin-top: -225px;
+    margin-bottom: 75px;
     border: solid blueviolet 3px;
     color: white;
 }
