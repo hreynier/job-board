@@ -7,16 +7,28 @@ import SearchIcon from '@material-ui/icons/Search';
 
 
 
-export default function JobSearchBar() {  
-    return (
-      <Paper component="form">
-            <InputBase
+export default function JobSearchBar({job, handleChange}) {  
+
+    /*  <InputBase
                 placeholder="Search Jobs"
                 inputProps={{ 'aria-label': 'search jobs' }}
             />
             <IconButton type="submit" aria-label="search">
           <SearchIcon />
         </IconButton>
+
+    */
+   let jobsList = job;
+   
+
+    return (
+      <Paper 
+        className="search-bar-container">
+            <div>
+                <input type="text" className="input" placeholder="Search Jobs..." onChange={handleChange} />
+                
+            </div>
+            
       </Paper>
     );
   }

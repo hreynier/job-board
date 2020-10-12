@@ -12,7 +12,7 @@ import JobModal from './JobModal';
 import JobSearchBar from './JobSearchBar';
 
 
-export default function JobBoard({jobs}) {
+export default function JobBoard({jobs, searchOnChange}) {
 
     // Modal
     const [open, setOpen] = React.useState(false);
@@ -70,6 +70,47 @@ export default function JobBoard({jobs}) {
         scrollToTop();
     };
 
+    // Search Component functions
+    // OnChange{
+        /*
+    const handleSearchChange = (e) => {
+        
+        // Store the current list of jobs.
+        let currentJobs = jobs;
+        // Create variable to store filtered jobs.
+        let filteredJobs = [];
+        // Store input
+        let input = e.target.value;
+
+        // If search is not empty, begin search.
+        if(input !== ""){
+
+            // Use the filter function to determine which jobs to show 
+            // based on the search.
+            filteredJobs = currentJobs.filter( job =>{
+                // Change all relevant job.values to lowercase.
+                let title = job.title.toLowerCase();
+                let company = job.company.toLowerCase();
+                let description = job.description.toLowerCase();
+                let location = job.location.toLowerCase();
+
+                // Store input as lowercase.
+                let inpLC = input.toLowerCase();
+
+                if(title.includes(inpLC) || company.includes(inpLC) || description.includes(inpLC) || location.includes(inpLC)){
+                    return true;
+                    console.log(job);
+                }
+            })
+        }
+        else{
+            filteredJobs = currentJobs;
+        }
+        console.log('click');
+        console.log(filteredJobs);
+
+    }; */
+
     return (
         <div className="job-board-container" id="job-board">
             <JobModal open={open} job={selectedJob} handleClose = {handleClose} />
@@ -78,7 +119,7 @@ export default function JobBoard({jobs}) {
                     Search
                 </Typography>
 
-                <JobSearchBar />
+                <JobSearchBar job={jobs} handleChange = {searchOnChange} />
 
                 <Typography variant="h6" component="h2">
                     Found {numJobs} Jobs
