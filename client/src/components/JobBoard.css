@@ -11,14 +11,30 @@
 
 .jobs-container {
     width: 100%;
-    padding: 50px 0px;
+    padding: 0px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: tomato;
+    background-color: #F5F5F5;
 }
 
-.search-container > .search-title {
-    margin-top: -25%;
+.curved-upper {
+    display: block;
+    margin: -2px 0px;
+}
+
+.search-container {
+    margin-top: -150px;
+    /*margin-bottom: -50px;*/
+    border: solid blueviolet 3px;
+    color: white;
+}
+
+.search-title {
+    font-family: 'Proza Libre' !important;
+}
+
+.mobile-stepper {
+    width: 50%;
 }

@@ -5,6 +5,10 @@
     padding: 20px 10px;
     justify-content: space-between;
 }
+
+.job:first-child {
+    margin-top: -5px;
+}
   
 .job:hover {
     cursor: pointer;

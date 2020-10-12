@@ -9,6 +9,7 @@ import './JobBoard.css';
 
 import Job from './Job';
 import JobModal from './JobModal';
+import JobSearchBar from './JobSearchBar';
 
 
 export default function JobBoard({jobs}) {
@@ -45,11 +46,9 @@ export default function JobBoard({jobs}) {
                 elem = elem.offsetParent;
             }
         }
-    
         // Return our distance
         return distance < 0 ? 0 : distance;
     };
-
 
     const jobBoardEl = document.getElementById('job-board');
 
@@ -61,7 +60,6 @@ export default function JobBoard({jobs}) {
           window.scrollTo(0, c - c / 8);
         }
     };
-
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -75,16 +73,21 @@ export default function JobBoard({jobs}) {
     return (
         <div className="job-board-container" id="job-board">
             <JobModal open={open} job={selectedJob} handleClose = {handleClose} />
-
-            <div className="search-container">
+            <div className="search-container"> 
                 <Typography className="search-title" variant="h4" component="h1">
-                    Entry Level Software Jobs
+                    Search
                 </Typography>
+
+                <JobSearchBar />
 
                 <Typography variant="h6" component="h2">
                     Found {numJobs} Jobs
                 </Typography>
             </div>
+
+            <svg className="curved-upper" xmlns="http://www.w3.org/2000/svg" viewBox="0 90 1440 105">
+                <path fill="#F5F5F5" fill-opacity="1" d="M0,128L120,117.3C240,107,480,85,720,96C960,107,1200,149,1320,170.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+            </svg>
 
             <div className="jobs-container">
                 {jobsOnPage.map(
@@ -99,6 +102,7 @@ export default function JobBoard({jobs}) {
                 </div>
 
                 <MobileStepper
+                    className="mobile-stepper"
                     variant="progress"
                     steps={numPages}
                     position="static"
