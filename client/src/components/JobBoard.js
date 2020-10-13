@@ -119,7 +119,7 @@ export default function JobBoard({jobs, searchOnChange}) {
                     Search
                 </Typography>
 
-                <JobSearchBar job={jobs} handleChange = {searchOnChange} />
+                <JobSearchBar handleChange = {searchOnChange} />
 
                 <Typography variant="h6" component="h2">
                     Found {numJobs} Jobs

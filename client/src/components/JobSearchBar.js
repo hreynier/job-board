@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 
 
-export default function JobSearchBar({job, handleChange}) {  
+export default function JobSearchBar({handleChange}) {  
 
     /*  <InputBase
                 placeholder="Search Jobs"
@@ -18,7 +18,7 @@ export default function JobSearchBar({job, handleChange}) {
         </IconButton>
 
     */
-   let jobsList = job;
+   
    
 
     return (
