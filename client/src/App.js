@@ -1,7 +1,11 @@
 import React from "react";
 import "./App.css";
-import HeroSection from "./components/HeroSection";
 
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
+
+
+import HeroSection from "./components/HeroSection";
 import JobBoard from "./components/JobBoard";
 
 // Jobs API URL - currently localhost.
@@ -9,12 +13,12 @@ const JOB_API_URL = "http://localhost:3001/jobs";
 
 // call API jobs.
 async function fetchJobs(updateCb) {
-  const res = await fetch(JOB_API_URL);
-  const json = await res.json();
+	const res = await fetch(JOB_API_URL);
+	const json = await res.json();
 
-  // Update state function used as callback
-  // so that jobsList can be updated.
-  updateCb(json);
+	// Update state function used as callback
+	// so that jobsList can be updated.
+	updateCb(json);
 }
 
 function App() {
@@ -24,11 +28,11 @@ function App() {
 	// Jobs component to display on the page.
 	const [jobsList, updateJobs] = React.useState([]);
 
-    // Use State Hook to declare filtered jobs list,
-  	// that takes initial value as og jobslist but upates
+	// Use State Hook to declare filtered jobs list,
+	// that takes initial value as og jobslist but upates
 	// as user searches.
 	const [filteredList, updateFiltered] = React.useState(jobsList);
-	  
+
 	React.useEffect(() => {
 		fetchJobs(updateJobs);
 		fetchJobs(updateFiltered);
@@ -39,7 +43,7 @@ function App() {
 	// Search Component functions
 	// OnChange
 	const handleSearchChange = (e) => {
-	
+
 		// Store the current list of jobs.
 		let currentJobs = jobsList;
 		// Create variable to store filtered jobs.
@@ -64,14 +68,14 @@ function App() {
 				let inpLC = input.toLowerCase();
 
 				if (
-				title.includes(inpLC) ||
-				company.includes(inpLC) ||
-				description.includes(inpLC) ||
-				location.includes(inpLC)
+					title.includes(inpLC) ||
+					company.includes(inpLC) ||
+					description.includes(inpLC) ||
+					location.includes(inpLC)
 				) {
-				return true;
-				} 
-				else{
+					return true;
+				}
+				else {
 					return false;
 				}
 			});
@@ -81,15 +85,17 @@ function App() {
 
 		console.log(filteredJobs);
 		updateFiltered(filteredJobs);
-		
-  	};
 
-  return (
-    <div className="App">
-      <HeroSection />
-      <JobBoard jobs={filteredList} searchOnChange={handleSearchChange} />
-    </div>
-  );
+	};
+
+	return (
+		<ThemeProvider theme={theme}>
+			<div className="App">
+				<HeroSection />
+				<JobBoard jobs={filteredList} searchOnChange={handleSearchChange} />
+			</div>
+		</ThemeProvider>
+	);
 }
 
 export default App;

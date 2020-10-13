@@ -7,16 +7,12 @@ img {
 }
 
 .hero-container {
-    height: 65vh;
+    height: 75vh;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
-}
-
-.hero-container > h1 {
-    color: #FFFFFF;
 }
 

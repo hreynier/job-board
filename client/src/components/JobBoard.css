@@ -26,14 +26,10 @@
 
 .search-container {
     margin-top: -225px;
-    margin-bottom: 75px;
-    /*border: solid blueviolet 3px;*/
+    margin-bottom: 20px;
     color: white;
 }
 
-.search-title {
-    font-family: 'Proza Libre' !important;
-}
 
 .mobile-stepper {
     width: 50%;
