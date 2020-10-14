@@ -34,29 +34,10 @@ export default function JobBoard({jobs, searchOnChange}) {
     // step = 0, show 0-49;
     // step = 1, show 50-99; etc.
 
-    var getOffsetTop = function (elem) {
-
-        // Set our distance placeholder
-        var distance = 0;
-    
-        // Loop up the DOM
-        if (elem.offsetParent) {
-            while(elem) {
-                distance += elem.offsetTop;
-                elem = elem.offsetParent;
-            }
-        }
-        // Return our distance
-        return distance < 0 ? 0 : distance;
-    };
-
-    const jobBoardEl = document.getElementById('job-board');
-
     function scrollToTop () {
-        const c = getOffsetTop(jobBoardEl);
-        console.log(c);
+        const c = document.documentElement.scrollTop || document.body.scrollTop;
         if (c > 0) {
-          //window.requestAnimationFrame(scrollToTop); causes callback hell loop
+          window.requestAnimationFrame(scrollToTop);
           window.scrollTo(0, c - c / 8);
         }
     };
