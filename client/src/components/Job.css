@@ -9,6 +9,18 @@
 .job:first-child {
     margin-top: -5px;
 }
+
+@media screen and (max-width: 600px){
+    .job {
+        width: 85%;
+        margin: 10px 0;
+    }
+    .job:first-child {
+        margin-top: 5px;
+    }
+}
+
+
   
 .job:hover {
     cursor: pointer;
