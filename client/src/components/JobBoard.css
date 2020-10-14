@@ -33,4 +33,19 @@
 
 .mobile-stepper {
     width: 50%;
+    margin-bottom: 3%;
+    background-color: #F5F5F5 !important;
+}
+
+@media screen and (max-width: 1280px){
+    .mobile-stepper {
+        width: 75%;
+        margin-bottom: 3.5%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .mobile-stepper {
+        width: 90%;
+    }
 }
