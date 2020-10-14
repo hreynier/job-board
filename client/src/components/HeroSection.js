@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import './HeroSection.css';
 import JobSearchBar from './JobSearchBar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     title: {
         fontFamily: '"Proza Libre"',
         color: '#FF5A5F',
@@ -23,8 +23,15 @@ const useStyles = makeStyles({
         fontFamily: '"Open Sans"',
         color: '#FFFFFF',
         fontWeight: '600',
+        marginTop: '-20px',
         textTransform: 'lowercase',
-        fontVariant: 'small-caps'
+        fontVariant: 'small-caps',
+        [theme.breakpoints.up('xl')]: {
+            fontSize: '5rem'
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '1.5rem'
+        }
         //fontStyle: 'italic',
         //backgroundColor: '#FFFFFF',
         //borderRadius: '5px',
@@ -32,8 +39,31 @@ const useStyles = makeStyles({
     },
     underline: {
         textDecoration: 'underline #FF5A5F'
+    },
+    searchContainer: {
+        marginTop: 'auto',
+        color: 'white',
+        marginBottom: '5%'
+    },
+    jobNum: {
+        marginLeft: '10%',
+        [theme.breakpoints.up('xs')]:{
+			fontSize: '0.95rem'
+		},
+		[theme.breakpoints.up('sm')]:{
+			fontSize: '1.05rem'
+		},
+		[theme.breakpoints.up('md')]:{
+			fontSize: '1.15rem'
+		},
+		[theme.breakpoints.up('lg')]:{
+			fontSize: '1.25rem'
+		},
+		[theme.breakpoints.up('xl')]:{
+			fontSize: '2rem',
+		}
     }
-})
+}));
 
 export default function HeroSection({jobs, searchOnChange}) {
     
@@ -44,16 +74,19 @@ export default function HeroSection({jobs, searchOnChange}) {
     return (
         <div className="hero-container">   
             <img src="/assets/images/hero-working-table.jpg" />
-            <Typography variant="h1" component="h1" className={classes.title}>
-                techstart
-            </Typography>
-            <Typography variant="h3" component="h2" className={classes.tagline}>
-                Find <span variant="body1" className={classes.underline}>Entry-Level</span> Tech Jobs
-            </Typography>
+            <div className="hidden"></div>
+            <div className="title-container">
+                <Typography variant="h1" component="h1" className={classes.title}>
+                    techstart
+                </Typography>
+                <Typography variant="h3" component="h2" className={classes.tagline}>
+                    Find <span variant="body1" className={classes.underline}>Entry-Level</span> Tech Jobs
+                </Typography>
+            </div>
 
-            <div className="search">
+            <div className={classes.searchContainer}>
                 <JobSearchBar handleChange = {searchOnChange} />
-                <Typography variant="h6" component="h2">
+                <Typography className={classes.jobNum} variant="h6" component="h2">
                     Found {numJobs} Jobs
                 </Typography>
             </div>

@@ -7,12 +7,23 @@ img {
 }
 
 .hero-container {
-    height: 75vh;
+    height: 65vh;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    /*justify-content: center;*/
     align-items: center;
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
 }
 
+.hidden {
+    margin-top: auto;
+    visibility: hidden;
+}
+
+.title-container {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
