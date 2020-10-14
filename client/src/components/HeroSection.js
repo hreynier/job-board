@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 import './HeroSection.css';
+import JobSearchBar from './JobSearchBar';
 
 const useStyles = makeStyles({
     title: {
@@ -34,7 +35,9 @@ const useStyles = makeStyles({
     }
 })
 
-export default function HeroSection() {
+export default function HeroSection({jobs, searchOnChange}) {
+    
+    const numJobs = jobs.length;
 
     const classes = useStyles();
 
@@ -47,6 +50,13 @@ export default function HeroSection() {
             <Typography variant="h3" component="h2" className={classes.tagline}>
                 Find <span variant="body1" className={classes.underline}>Entry-Level</span> Tech Jobs
             </Typography>
+
+            <div className="search">
+                <JobSearchBar handleChange = {searchOnChange} />
+                <Typography variant="h6" component="h2">
+                    Found {numJobs} Jobs
+                </Typography>
+            </div>
         </div>
     )
 }

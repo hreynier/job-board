@@ -9,10 +9,8 @@ import './JobBoard.css';
 
 import Job from './Job';
 import JobModal from './JobModal';
-import JobSearchBar from './JobSearchBar';
 
-
-export default function JobBoard({jobs, searchOnChange}) {
+export default function JobBoard({jobs}) {
 
     // Modal
     const [open, setOpen] = React.useState(false);
@@ -54,12 +52,6 @@ export default function JobBoard({jobs, searchOnChange}) {
     return (
         <div className="job-board-container" id="job-board">
             <JobModal open={open} job={selectedJob} handleClose = {handleClose} />
-            <div className="search-container"> 
-                <JobSearchBar handleChange = {searchOnChange} />
-                <Typography variant="h6" component="h2">
-                    Found {numJobs} Jobs
-                </Typography>
-            </div>
 
             <svg className="curved-upper" xmlns="http://www.w3.org/2000/svg" viewBox="0 90 1440 105">
                 <path fill="#F5F5F5" fill-opacity="1" d="M0,128L120,117.3C240,107,480,85,720,96C960,107,1200,149,1320,170.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
@@ -73,9 +65,9 @@ export default function JobBoard({jobs, searchOnChange}) {
                     }} />)
                 )}
 
-                <div>
+                <Typography variant="body1">
                     Page {activeStep + 1} of {numPages}
-                </div>
+                </Typography>
 
                 <MobileStepper
                     className="mobile-stepper"
@@ -92,8 +84,8 @@ export default function JobBoard({jobs, searchOnChange}) {
                     backButton={
                         <Button size="small" onClick={handleBack} disabled={activeStep === 0} >
                             <KeyboardArrowLeft />
-                    Back
-                </Button>
+                            Back
+                        </Button>
                     }
                 />
             </div>

@@ -91,8 +91,8 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="App">
-				<HeroSection />
-				<JobBoard jobs={filteredList} searchOnChange={handleSearchChange} />
+				<HeroSection jobs={filteredList} searchOnChange={handleSearchChange} />
+				<JobBoard jobs={filteredList} />
 			</div>
 		</ThemeProvider>
 	);
