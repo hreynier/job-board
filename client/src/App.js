@@ -8,8 +8,8 @@ import theme from './theme';
 import HeroSection from "./components/HeroSection";
 import JobBoard from "./components/JobBoard";
 
-// Jobs API URL - currently localhost.
-const JOB_API_URL = "http://localhost:3001/jobs";
+// Jobs API URL - relative path.
+const JOB_API_URL = "/api/jobs";
 
 // call API jobs.
 async function fetchJobs(updateCb) {
