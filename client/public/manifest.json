@@ -1,25 +1,26 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TechStart",
+  "name": "TechStart | Entry-level Tech Jobs",
+  "description": "Find entry-level tech jobs. TechStart aggregates and filters entry-level tech jobs from job sites around the world so that you don't need to do the searching!",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "assets/icon/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "assets/icon/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "assets/icon/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?source=pwa",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#FF5A5F",
   "background_color": "#ffffff"
 }
