@@ -11,33 +11,16 @@ import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
 import './JobModal.css';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-    title: {
-		[theme.breakpoints.up('lg')]:{
-			fontSize: '1.5rem'
-		},
-		[theme.breakpoints.up('xl')]:{
-			fontSize: '2.2rem',
-		}
-    },
-}));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-  
 
 export default function JobModal({job, open, handleClose}) {
-
-    //styles
-    const classes = useStyles();
 
     let jobBoard = `From ${job.source}`;
 
     return (
-        // make job company smaller in the dialog title.
         <div>
             <Dialog
                 open={open}
@@ -48,9 +31,9 @@ export default function JobModal({job, open, handleClose}) {
                 aria-describedby="alert-dialog-slide-description"
                 >
                 <DialogTitle disableTypography id="alert-dialog-slide-title">
-                    <Typography variant="h4"> {job.title} </Typography>
-                    <Typography variant="h4"> {job.company} </Typography>
-                    {job.company_logo != "" && 
+                    <Typography variant="h5"> {job.title} </Typography>
+                    <Typography variant="h5"> {job.company} </Typography>
+                    {job.company_logo && 
                         <img className="detail-logo" src={job.company_logo} alt={`${job.company} Logo.`} />
                     }
                     <br />
