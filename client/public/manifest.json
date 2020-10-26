@@ -1,7 +1,7 @@
 {
   "short_name": "TechStart",
   "name": "TechStart | Entry-level Tech Jobs",
-  "description": "Find entry-level tech jobs. TechStart aggregates and filters entry-level tech jobs from job sites around the world so that you don't need to do the searching!",
+  "description": "Find entry-level tech jobs. TechStart collects and filters entry-level tech jobs from job sites around the world so that you don't need to do the searching!",
   "icons": [
     {
       "src": "assets/icon/favicon.ico",
