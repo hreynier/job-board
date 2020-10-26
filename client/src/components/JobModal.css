@@ -1,8 +1,8 @@
 .detail-logo {
-    height: 50px;
+    height: 30px;
     position: absolute;
-    right: 20px;
-    top: 35px;
+    right: 30px;
+    top: 50px;
     width: auto;
     z-index: 2;
 }
