@@ -32,12 +32,19 @@ app.get('/api/jobs', async (req, res) => {
 
     let sortedJobs = jobs.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-    // Stringify Jobs.
-    jobs = JSON.stringify(jobs);
-    sortedJobs = JSON.stringify(sortedJobs);
+    // Filter array to remove false jobs.
+    let filteredJobs = sortedJobs.filter(job => {
+        if(job.company == ""){
+            return false
+        }
+        return true
+    })
 
-    
-    return res.send(sortedJobs) 
+    // Print the jobs removed by the filter.
+    console.log(`Removed ${jobs.length-filteredJobs.length} empty jobs. Total jobs: ${filteredJobs.length}`);
+    // Stringify Jobs.
+    filteredJobs = JSON.stringify(filteredJobs);
+    return res.send(filteredJobs) 
 })
 
 app.listen(port, () => {
