@@ -34,9 +34,6 @@ export default function JobModal({job, open, handleClose}) {
     //styles
     const classes = useStyles();
 
-    if(!job.title) {
-        return <div></div>
-    }
     let jobBoard = `From ${job.source}`;
 
     return (
@@ -53,7 +50,9 @@ export default function JobModal({job, open, handleClose}) {
                 <DialogTitle disableTypography id="alert-dialog-slide-title">
                     <Typography variant="h4"> {job.title} </Typography>
                     <Typography variant="h4"> {job.company} </Typography>
-                    <img className="detail-logo" src={job.company_logo} alt={`${job.company} Logo.`} />
+                    {job.company_logo != "" && 
+                        <img className="detail-logo" src={job.company_logo} alt={`${job.company} Logo.`} />
+                    }
                     <br />
                     <Chip size="small" label={jobBoard} color="primary" />
                 </DialogTitle>
