@@ -76,8 +76,9 @@ async function fetchRemoteOk() {
     });
 
     
-    let test2 = allJobs[2];
+    /*let test2 = allJobs[2];
     console.log({test2});
+    */
     
 
     // Simple filtering algo

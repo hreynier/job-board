@@ -63,9 +63,10 @@ async function fetchGithub() {
         entry.date = new Date(dateFull).toISOString();
     })
 
-    let testJob = allJobs[2];
+    /*let testJob = allJobs[2];
 
     console.log({testJob});
+    */
 
     // Simple filtering algorithm
     const jrJobs = allJobs.filter(job => {

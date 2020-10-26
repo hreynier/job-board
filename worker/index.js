@@ -4,6 +4,9 @@ var CronJob = require('cron').CronJob;
 const fetchGithub = require('./tasks/fetch-github');
 const fetchRemoteOk = require('./tasks/fetch-remoteok');
 
+fetchRemoteOk();
+fetchGithub();
+
 // fetch Github jobs at every 10th minute past the hour 10 * * * *
 new CronJob('52 * * * *', fetchGithub, null, true, 'Europe/London');
 
