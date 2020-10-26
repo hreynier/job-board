@@ -73,7 +73,7 @@ export default function HeroSection({jobs, searchOnChange}) {
 
     return (
         <div className="hero-container">   
-            <img src="/assets/images/hero-working-table.jpg" />
+            <img className="hero-image" src="/assets/images/hero-working-table.jpg" />
             <div className="hidden"></div>
             <div className="title-container">
                 <Typography variant="h1" component="h1" className={classes.title}>

@@ -7,6 +7,7 @@ import theme from './theme';
 
 import HeroSection from "./components/HeroSection";
 import JobBoard from "./components/JobBoard";
+import Footer from "./components/Footer";
 
 // Jobs API URL - relative path.
 const JOB_API_URL = "/api/jobs";
@@ -93,6 +94,7 @@ function App() {
 			<div className="App">
 				<HeroSection jobs={filteredList} searchOnChange={handleSearchChange} />
 				<JobBoard jobs={filteredList} />
+				<Footer />
 			</div>
 		</ThemeProvider>
 	);
